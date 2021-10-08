@@ -1,0 +1,617 @@
+[
+	{
+		"user": "0x1a776c84d64eCADA985C968c3589B3c8615A1e7C",
+		"eth_stbz_balance": "6072783436847971755643",
+		"arb_stbz_balance": "2024261145615990585214"
+	},
+	{
+		"user": "0x544B199505266403Ee49830b876A6baf350b937b",
+		"eth_stbz_balance": "10270639634719899931715",
+		"arb_stbz_balance": "3423546544906633310572"
+	},
+	{
+		"user": "0xaf825038240a82Aa8b07C716F6fdAFF7d936dcf2",
+		"eth_stbz_balance": "5437694076180510421403",
+		"arb_stbz_balance": "1812564692060170140468"
+	},
+	{
+		"user": "0x7b505D4ac6ab4CdF3FF86C48ebf4b3645377817f",
+		"eth_stbz_balance": "28093791961666911233523",
+		"arb_stbz_balance": "9364597320555637077841"
+	},
+	{
+		"user": "0xDa7FC7825Eba671c937D4Ec6517f66248caa8Ef2",
+		"eth_stbz_balance": "2718562387455338455324",
+		"arb_stbz_balance": "906187462485112818441"
+	},
+	{
+		"user": "0x8770e06E75daa83C5CB2129bfd0431F9E1Da4C84",
+		"eth_stbz_balance": "11364702192811506899794",
+		"arb_stbz_balance": "3788234064270502299931"
+	},
+	{
+		"user": "0xcB017542893ef0C1a55828659466E0C3FF473afE",
+		"eth_stbz_balance": "425000000000000000000",
+		"arb_stbz_balance": "141666666666666666667"
+	},
+	{
+		"user": "0x77d2822cC311bF6972412d98c9D77540Bc0B0837",
+		"eth_stbz_balance": "342597006657907711914",
+		"arb_stbz_balance": "114199002219302570638"
+	},
+	{
+		"user": "0x719B36c54417381C9505500987779091616DA683",
+		"eth_stbz_balance": "1881972441483977004641",
+		"arb_stbz_balance": "627324147161325668214"
+	},
+	{
+		"user": "0x941c69fe42579665f18d9f0Ea44Ac53b0E872276",
+		"eth_stbz_balance": "4837020841690728238420",
+		"arb_stbz_balance": "1612340280563576079473"
+	},
+	{
+		"user": "0x01C4482e4142C6ec1997ce77D4B439Fe26DE6F87",
+		"eth_stbz_balance": "1994072090833850293944",
+		"arb_stbz_balance": "664690696944616764648"
+	},
+	{
+		"user": "0xCba1A275e2D858EcffaF7a87F606f74B719a8A93",
+		"eth_stbz_balance": "135818115287349110411562",
+		"arb_stbz_balance": "45272705095783036803854"
+	},
+	{
+		"user": "0xE08726c1C52FF13450BfFdeC9221AB7cE708cea0",
+		"eth_stbz_balance": "381878560283931953286",
+		"arb_stbz_balance": "127292853427977317762"
+	},
+	{
+		"user": "0xda0972c8431d06625b924dCfaf19D77BAB19Ae1C",
+		"eth_stbz_balance": "5549024936952109625998",
+		"arb_stbz_balance": "1849674978984036541999"
+	},
+	{
+		"user": "0x82Ff77F5e4fbA83635b8EA80c058DbDDB70C0F2a",
+		"eth_stbz_balance": "75405185184233894314",
+		"arb_stbz_balance": "25135061728077964771"
+	},
+	{
+		"user": "0xeB66B191f658DB14bAE39C139ab0f5F7B8c479F9",
+		"eth_stbz_balance": "4000294397893043460151",
+		"arb_stbz_balance": "1333431465964347820050"
+	},
+	{
+		"user": "0xbF7ABb7636AD59f47568cED4903169593dda6E09",
+		"eth_stbz_balance": "1593867465936189198649",
+		"arb_stbz_balance": "531289155312063066216"
+	},
+	{
+		"user": "0x8000F432747ccDc71B9DF9F8eB96EFfeeac6218E",
+		"eth_stbz_balance": "5041121665640130607398",
+		"arb_stbz_balance": "1680373888546710202466"
+	},
+	{
+		"user": "0x94403A4D342c40860966C0344a88AC38B9dfC952",
+		"eth_stbz_balance": "863504005948781303062",
+		"arb_stbz_balance": "287834668649593767687"
+	},
+	{
+		"user": "0x5D5Fa56eBE1f83AE3C602884dC996E2c622545F8",
+		"eth_stbz_balance": "156862778885140209119",
+		"arb_stbz_balance": "52287592961713403040"
+	},
+	{
+		"user": "0x2FE5F48601db92012855B477000CBee3dB486E82",
+		"eth_stbz_balance": "6527146648400966588366",
+		"arb_stbz_balance": "2175715549466988862789"
+	},
+	{
+		"user": "0x63Dbf00C99EaD0635FF5aDf2fd2f1F7F2141fc7C",
+		"eth_stbz_balance": "43296551865892905013501",
+		"arb_stbz_balance": "14432183955297635004500"
+	},
+	{
+		"user": "0x285fed35cBEA271A711681e84fFd83c68a596A75",
+		"eth_stbz_balance": "12092311336365900318813",
+		"arb_stbz_balance": "4030770445455300106271"
+	},
+	{
+		"user": "0x6E4439C5ac99CD363E8744a4aE5cBC4De68E9098",
+		"eth_stbz_balance": "16202905700406213992013",
+		"arb_stbz_balance": "5400968566802071330671"
+	},
+	{
+		"user": "0x43D49717C3CB3DdC85c51AeF06f3DeedBBE79054",
+		"eth_stbz_balance": "2003961816319328166847",
+		"arb_stbz_balance": "667987272106442722282"
+	},
+	{
+		"user": "0xE3e202b2CAC2B3eC41219C69fE0D2352b19cef69",
+		"eth_stbz_balance": "1391051088686186344081",
+		"arb_stbz_balance": "463683696228728781360"
+	},
+	{
+		"user": "0xc70d758BBC91988A678B187C30Dd4869277Efbac",
+		"eth_stbz_balance": "297925393788732486984",
+		"arb_stbz_balance": "99308464596244162328"
+	},
+	{
+		"user": "0x2AD6B3148A004a085326Ed388078f67AaA5d3F9a",
+		"eth_stbz_balance": "1130414633694462479882",
+		"arb_stbz_balance": "376804877898154159961"
+	},
+	{
+		"user": "0x5bB6F3431585aBa50ca5cf670D2dfd68f8f932f3",
+		"eth_stbz_balance": "1112073091077050070544",
+		"arb_stbz_balance": "370691030359016690181"
+	},
+	{
+		"user": "0x5be28e441F325D8B005839fD69695884f11da063",
+		"eth_stbz_balance": "450000000000000000000",
+		"arb_stbz_balance": "150000000000000000000"
+	},
+	{
+		"user": "0xFe1e57a368A934caC28deAB30d2Df8D03ABc8C6b",
+		"eth_stbz_balance": "50934800000000000000",
+		"arb_stbz_balance": "16978266666666666667"
+	},
+	{
+		"user": "0xcD776a6074D7eb8dFEC327e1660f55990d7c5C97",
+		"eth_stbz_balance": "3436050993550908282230",
+		"arb_stbz_balance": "1145350331183636094077"
+	},
+	{
+		"user": "0x3D685263E7592afF8DDc8f1567e0E1988889557D",
+		"eth_stbz_balance": "3371266701981174412760",
+		"arb_stbz_balance": "1123755567327058137587"
+	},
+	{
+		"user": "0xdE395F4A9338ad70176FF026ffaBD85eDBf62e29",
+		"eth_stbz_balance": "868416783297702612443",
+		"arb_stbz_balance": "289472261099234204148"
+	},
+	{
+		"user": "0x2b88ee167dFF49c61b0526CA2eBffF79A46C8D02",
+		"eth_stbz_balance": "1200000000000000000000",
+		"arb_stbz_balance": "400000000000000000000"
+	},
+	{
+		"user": "0xF6e1Cac5B40711DFD840Fd01f6e8a85654Ac1045",
+		"eth_stbz_balance": "3138286956004641182070",
+		"arb_stbz_balance": "1046095652001547060690"
+	},
+	{
+		"user": "0x51c93058Fd3dE365F60BC93DFEA6789a84235ef2",
+		"eth_stbz_balance": "518654455876447936434",
+		"arb_stbz_balance": "172884818625482645478"
+	},
+	{
+		"user": "0x90D061e6cC636F700bd578dB01CdcF5d464EB1a8",
+		"eth_stbz_balance": "65511559713726356739",
+		"arb_stbz_balance": "21837186571242118913"
+	},
+	{
+		"user": "0xF8a2D291ce72Bd83D010151cA1c14580EF05181F",
+		"eth_stbz_balance": "1038109142660019934101",
+		"arb_stbz_balance": "346036380886673311367"
+	},
+	{
+		"user": "0xCC0bCf9Ef05Ef7bf0A757faEfe6ab6D3E37CC335",
+		"eth_stbz_balance": "8562728693567449092171",
+		"arb_stbz_balance": "2854242897855816364057"
+	},
+	{
+		"user": "0xeA01fcc34945aB4A991155260713680026392Fe3",
+		"eth_stbz_balance": "3615062071614373879259",
+		"arb_stbz_balance": "1205020690538124626420"
+	},
+	{
+		"user": "0x14df5677aa90eC0D64c631621DaD80b44f9DeAFF",
+		"eth_stbz_balance": "502573075472321449726",
+		"arb_stbz_balance": "167524358490773816575"
+	},
+	{
+		"user": "0x666D58423D8Cc66D2c8a6253d5C487985908E88f",
+		"eth_stbz_balance": "10500000495148749882586",
+		"arb_stbz_balance": "3500000165049583294195"
+	},
+	{
+		"user": "0x216f436F82a0FA61AA381dbfb9530ccE8E7188Cf",
+		"eth_stbz_balance": "1719671301698625847432",
+		"arb_stbz_balance": "573223767232875282477"
+	},
+	{
+		"user": "0xb17055376e5D7e43d3E0E13Bec4602740683F713",
+		"eth_stbz_balance": "700112333899142593028",
+		"arb_stbz_balance": "233370777966380864343"
+	},
+	{
+		"user": "0x75d5CEd39b418D5E25F4A05db87fCC8bCEED7E66",
+		"eth_stbz_balance": "10528026687379972611707",
+		"arb_stbz_balance": "3509342229126657537236"
+	},
+	{
+		"user": "0xc51E4f7AdA44ca984cBBbAF035b8c2f4672B751D",
+		"eth_stbz_balance": "1234400285703183273091",
+		"arb_stbz_balance": "411466761901061091030"
+	},
+	{
+		"user": "0x2E69476D174E9caC1C9c1529c67c5ae66FE933FF",
+		"eth_stbz_balance": "58855445794974220742",
+		"arb_stbz_balance": "19618481931658073581"
+	},
+	{
+		"user": "0x18C32d617b4DBcc8F1F2D77842535f09Ff56CB3E",
+		"eth_stbz_balance": "667892616624914113727",
+		"arb_stbz_balance": "222630872208304704576"
+	},
+	{
+		"user": "0xF9D8f84A49E764e0b7F0CDafCB808635CFcC00B9",
+		"eth_stbz_balance": "1065768194791021251721",
+		"arb_stbz_balance": "355256064930340417240"
+	},
+	{
+		"user": "0x1BA4c30521EBB6Ed74A89fe87FE211A2E9390F97",
+		"eth_stbz_balance": "151353756279072394102",
+		"arb_stbz_balance": "50451252093024131367"
+	},
+	{
+		"user": "0xeBeF5Ff475d55C38036b49DFc6E73ca2fF1025f1",
+		"eth_stbz_balance": "107680184936383994683",
+		"arb_stbz_balance": "35893394978794664894"
+	},
+	{
+		"user": "0xC0f85116E291d9D2c24983C291f8cc10a234107e",
+		"eth_stbz_balance": "717135825066162180205",
+		"arb_stbz_balance": "239045275022054060068"
+	},
+	{
+		"user": "0xFc7b67f72803832D7deD7985FA94B01Febf87c46",
+		"eth_stbz_balance": "557029050462690319087",
+		"arb_stbz_balance": "185676350154230106362"
+	},
+	{
+		"user": "0xFBbf7d0d6Df7d68384C939225b936848b24f4600",
+		"eth_stbz_balance": "3722893454194387762235",
+		"arb_stbz_balance": "1240964484731462587412"
+	},
+	{
+		"user": "0xDc7885d97602481C47a068C511cE8C4a7B7E8740",
+		"eth_stbz_balance": "911058682540169057095",
+		"arb_stbz_balance": "303686227513389685698"
+	},
+	{
+		"user": "0x1B72Bac3772050FDCaF468CcE7e20deb3cB02d89",
+		"eth_stbz_balance": "850577431811888798742",
+		"arb_stbz_balance": "283525810603962932914"
+	},
+	{
+		"user": "0x741d794eC94c34143d671D548b174bC237c4245E",
+		"eth_stbz_balance": "2500000000000000000000",
+		"arb_stbz_balance": "833333333333333333333"
+	},
+	{
+		"user": "0x8A311B0BF4BB0F38A1fDd9e2F4DE973Ddf9cE5aE",
+		"eth_stbz_balance": "327246782587105851480",
+		"arb_stbz_balance": "109082260862368617160"
+	},
+	{
+		"user": "0x26fCbD3AFEbbE28D0A8684F790C48368D21665b5",
+		"eth_stbz_balance": "12951132400412146529559",
+		"arb_stbz_balance": "4317044133470715509853"
+	},
+	{
+		"user": "0x995B3c196aCeb2297acc62C500e6cD8B1189eD5c",
+		"eth_stbz_balance": "4019441770209671591884",
+		"arb_stbz_balance": "1339813923403223863961"
+	},
+	{
+		"user": "0xE17883D74f80B1B28d81814eEBE1C2fE5e771E86",
+		"eth_stbz_balance": "711608883616273651645",
+		"arb_stbz_balance": "237202961205424550548"
+	},
+	{
+		"user": "0x0c6410396Eb84105Ad728b52244178BE34545fE2",
+		"eth_stbz_balance": "637777911590211590069",
+		"arb_stbz_balance": "212592637196737196690"
+	},
+	{
+		"user": "0xcD70A36A0509f5F0b0C1c6273F04EAed777Ff9bD",
+		"eth_stbz_balance": "14550966523247587130336",
+		"arb_stbz_balance": "4850322174415862376779"
+	},
+	{
+		"user": "0x79Dc753521b8c5489985DA30F5E5f88F457Ee421",
+		"eth_stbz_balance": "591170883461641169311",
+		"arb_stbz_balance": "197056961153880389770"
+	},
+	{
+		"user": "0x350A98900329AcBEaFF0e5296b00a3D1E3A335f4",
+		"eth_stbz_balance": "2226591528185250127134",
+		"arb_stbz_balance": "742197176061750042378"
+	},
+	{
+		"user": "0xBe23CbB62064b8B1550Ae5ADA59c39d45b1E2081",
+		"eth_stbz_balance": "13718325930962602009247",
+		"arb_stbz_balance": "4572775310320867336416"
+	},
+	{
+		"user": "0x98198876E49847eC3a2883B6ac45990116c3aA17",
+		"eth_stbz_balance": "2843923211632024932438",
+		"arb_stbz_balance": "947974403877341644146"
+	},
+	{
+		"user": "0x0caC9C3D7196f5BbD76FaDcd771fB69b772c0F9d",
+		"eth_stbz_balance": "8045964952182935932513",
+		"arb_stbz_balance": "2681988317394311977504"
+	},
+	{
+		"user": "0xEb9DB9DDAac4Ea1de863B55BA02B5E163e37701a",
+		"eth_stbz_balance": "9086649499629744668786",
+		"arb_stbz_balance": "3028883166543248222929"
+	},
+	{
+		"user": "0xB8ef7f2082a0783aef1a8F85ecf89f06CD94F812",
+		"eth_stbz_balance": "5789629790888583387882",
+		"arb_stbz_balance": "1929876596962861129294"
+	},
+	{
+		"user": "0x45d21101A2f9EC8Fb7a0559a7B8ae06a33343dd0",
+		"eth_stbz_balance": "523624831883347402741",
+		"arb_stbz_balance": "174541610627782467580"
+	},
+	{
+		"user": "0xB172de5C47899B7d1995549e09202f7e78971ACf",
+		"eth_stbz_balance": "5022071583435322391737",
+		"arb_stbz_balance": "1674023861145107463912"
+	},
+	{
+		"user": "0x7922037CCC6217033Dad128E269bd32b49e6E615",
+		"eth_stbz_balance": "332046377258185618647",
+		"arb_stbz_balance": "110682125752728539549"
+	},
+	{
+		"user": "0x0FDa32B8144e206c78b6Baa3d6826AE8574eC263",
+		"eth_stbz_balance": "3861027969293652470229",
+		"arb_stbz_balance": "1287009323097884156743"
+	},
+	{
+		"user": "0x46b84502689062FFCf414540a07309146EA72fE1",
+		"eth_stbz_balance": "17391330800861705569556",
+		"arb_stbz_balance": "5797110266953901856519"
+	},
+	{
+		"user": "0x5c92C0384c6cef69A3cB1fec3a53C4Ce8Aa196C4",
+		"eth_stbz_balance": "3171055090884399927216",
+		"arb_stbz_balance": "1057018363628133309072"
+	},
+	{
+		"user": "0x79CdFfCB55Cd84ed2CCc598D705F4d54fd43BCCA",
+		"eth_stbz_balance": "11911821525621668553648",
+		"arb_stbz_balance": "3970607175207222851216"
+	},
+	{
+		"user": "0x7420fA58bA44E1141d5E9ADB6903BE549f7cE0b5",
+		"eth_stbz_balance": "9492409712229237918206",
+		"arb_stbz_balance": "3164136570743079306069"
+	},
+	{
+		"user": "0x8E3686C02d4417309356C9FF078E31bdB060cB0e",
+		"eth_stbz_balance": "11817512845501147968834",
+		"arb_stbz_balance": "3939170948500382656278"
+	},
+	{
+		"user": "0x1b541C50B42d65040fC51197F0C6277dFa96dF0F",
+		"eth_stbz_balance": "1010842927229902723420",
+		"arb_stbz_balance": "336947642409967574473"
+	},
+	{
+		"user": "0xE84ADC0964ee34CE0319DF3418636eD6a4117B97",
+		"eth_stbz_balance": "3416878922741447573900",
+		"arb_stbz_balance": "1138959640913815857967"
+	},
+	{
+		"user": "0x396112146855b577F82E5cF938aC8064F5Ff3A5e",
+		"eth_stbz_balance": "105000000000000000000",
+		"arb_stbz_balance": "35000000000000000000"
+	},
+	{
+		"user": "0x78Cf7Ef0c16a861A8e70B63470F225CD6074648f",
+		"eth_stbz_balance": "955135683623088968515",
+		"arb_stbz_balance": "318378561207696322838"
+	},
+	{
+		"user": "0x94baB67493AC27a06DDacEf16F79F70ec9840681",
+		"eth_stbz_balance": "187979741156193573383",
+		"arb_stbz_balance": "62659913718731191128"
+	},
+	{
+		"user": "0xd6Fd705EE0B31a9300D3E2154bccE777270CBb6f",
+		"eth_stbz_balance": "6619795826492331081100",
+		"arb_stbz_balance": "2206598608830777027033"
+	},
+	{
+		"user": "0x69b06D67d6A80DDB5D0c47Aac6064694B44c7ed1",
+		"eth_stbz_balance": "1227077633576491231881",
+		"arb_stbz_balance": "409025877858830410627"
+	},
+	{
+		"user": "0x2eB73cdf547E81789edd0d2670aE8Bf045D52e0d",
+		"eth_stbz_balance": "7082514084843963955359",
+		"arb_stbz_balance": "2360838028281321318453"
+	},
+	{
+		"user": "0x27b65f269E3EEe4c066242b767b3479bEDe5b3C2",
+		"eth_stbz_balance": "548607020998544415299",
+		"arb_stbz_balance": "182869006999514805100"
+	},
+	{
+		"user": "0x7055f4093B579caE84F043d4Eda45FeDd9b0A437",
+		"eth_stbz_balance": "40186510821484549077",
+		"arb_stbz_balance": "13395503607161516359"
+	},
+	{
+		"user": "0x1879f18B8BC7f29648F231D67e9e55E53A324537",
+		"eth_stbz_balance": "75315012112316510195",
+		"arb_stbz_balance": "25105004037438836732"
+	},
+	{
+		"user": "0xa6Dc4C01cf2d01c0187E6E6b6bB773FB147b632c",
+		"eth_stbz_balance": "942925679759698409241",
+		"arb_stbz_balance": "314308559919899469747"
+	},
+	{
+		"user": "0xDf6dC30bC460b4702A92b0609f6482b81Cfa5849",
+		"eth_stbz_balance": "2450634822953381739281",
+		"arb_stbz_balance": "816878274317793913094"
+	},
+	{
+		"user": "0xC62BF716CD251eBf05bB451D9c537d709EA0271A",
+		"eth_stbz_balance": "653338149989991243719",
+		"arb_stbz_balance": "217779383329997081240"
+	},
+	{
+		"user": "0x398890E4850e31E74cb2266949F53557ec35eAc1",
+		"eth_stbz_balance": "378345250508108936009",
+		"arb_stbz_balance": "126115083502702978670"
+	},
+	{
+		"user": "0xd68D5fE00DA4F8c1ad2f030ccEF74fDBEaD8fde5",
+		"eth_stbz_balance": "20000000000000000000000",
+		"arb_stbz_balance": "6666666666666666666667"
+	},
+	{
+		"user": "0x5E942b6D9f3aeC5a6120D87Ff9a168885e2E75F0",
+		"eth_stbz_balance": "690529521029763696365",
+		"arb_stbz_balance": "230176507009921232122"
+	},
+	{
+		"user": "0x1Ce99932fD278E00911814dC4bd403e1293d8ED2",
+		"eth_stbz_balance": "113233442587556837745",
+		"arb_stbz_balance": "37744480862518945915"
+	},
+	{
+		"user": "0x42c74262E7a97b85e9ADEB50027d18CDa41Be9df",
+		"eth_stbz_balance": "1407000000000000000000",
+		"arb_stbz_balance": "469000000000000000000"
+	},
+	{
+		"user": "0xc63C8459Fea26c0bc116DA495452C3484cd4b9Be",
+		"eth_stbz_balance": "275472037057061368303",
+		"arb_stbz_balance": "91824012352353789434"
+	},
+	{
+		"user": "0x88106c0563f06eb76008D8D21fAddDc5c2D156d9",
+		"eth_stbz_balance": "199610672188282376531",
+		"arb_stbz_balance": "66536890729427458844"
+	},
+	{
+		"user": "0x4191e79842d707E3cd17A13F966886C74ac9c185",
+		"eth_stbz_balance": "901112808973807313477",
+		"arb_stbz_balance": "300370936324602437826"
+	},
+	{
+		"user": "0x33606a65801bE4Cdd0C40C1e6B59F13165352E50",
+		"eth_stbz_balance": "192550721342903539572",
+		"arb_stbz_balance": "64183573780967846524"
+	},
+	{
+		"user": "0x986197976053a7664DFabec213b66Ad3Ec3109C6",
+		"eth_stbz_balance": "3361365491447707311126",
+		"arb_stbz_balance": "1120455163815902437042"
+	},
+	{
+		"user": "0xF0f15Cedc719B5A55470877B0710d5c7816916b1",
+		"eth_stbz_balance": "134901805702685386750",
+		"arb_stbz_balance": "44967268567561795583"
+	},
+	{
+		"user": "0x38e0a92eA3E222B1F4e461671b6DE52663F3AfFc",
+		"eth_stbz_balance": "20000000000000000000",
+		"arb_stbz_balance": "6666666666666666667"
+	},
+	{
+		"user": "0xF1901e6bdc9CE90fA71DfEd64356ad6d59263673",
+		"eth_stbz_balance": "602730983014071654738",
+		"arb_stbz_balance": "200910327671357218246"
+	},
+	{
+		"user": "0x7ab066BCD945264e1B1C8d451CB3517c973e676c",
+		"eth_stbz_balance": "3503653458250128592974",
+		"arb_stbz_balance": "1167884486083376197658"
+	},
+	{
+		"user": "0x94A4F812B3448C13ef6D8FA64e63B0d3dec6a7fb",
+		"eth_stbz_balance": "389904249694770343059",
+		"arb_stbz_balance": "129968083231590114353"
+	},
+	{
+		"user": "0xfb16382e7fd0fcd8FD1fdD3191E6Ee04495cE88C",
+		"eth_stbz_balance": "1177146960199052764262",
+		"arb_stbz_balance": "392382320066350921421"
+	},
+	{
+		"user": "0x0d18a2085992BE0BbcbE912d36d0125E4d1101Bd",
+		"eth_stbz_balance": "1000376630798891614307",
+		"arb_stbz_balance": "333458876932963871436"
+	},
+	{
+		"user": "0xf98aEE2ECf3180C8637b76fe12367B714e761D28",
+		"eth_stbz_balance": "331634324894546781592",
+		"arb_stbz_balance": "110544774964848927197"
+	},
+	{
+		"user": "0x6b06c0aB70549118373F51265f05b1c0fA0873F7",
+		"eth_stbz_balance": "105064789179178075740",
+		"arb_stbz_balance": "35021596393059358580"
+	},
+	{
+		"user": "0xdD20Dad66e1fD6993351704F25EDacb6bD51DC11",
+		"eth_stbz_balance": "287065017932594827110",
+		"arb_stbz_balance": "95688339310864942370"
+	},
+	{
+		"user": "0x02211B3934D9D87cf6b5b092C7bE5d69B5C16E40",
+		"eth_stbz_balance": "100000000000000000000",
+		"arb_stbz_balance": "33333333333333333333"
+	},
+	{
+		"user": "0x1D847a1d6AA4b751b7E32EEd29A659B802d37a4e",
+		"eth_stbz_balance": "23497815374667342678",
+		"arb_stbz_balance": "7832605124889114226"
+	},
+	{
+		"user": "0x909Ae1fC12c1C64F7554dC27a1c7785EFaba79b7",
+		"eth_stbz_balance": "1562380153364930641941",
+		"arb_stbz_balance": "520793384454976880647"
+	},
+	{
+		"user": "0xB6B29a97650091f6B500b38E7844991df3056459",
+		"eth_stbz_balance": "404121267587620513188",
+		"arb_stbz_balance": "134707089195873504396"
+	},
+	{
+		"user": "0xd777D3971Cf9bccef65B0B665f0e4A5e9d05C041",
+		"eth_stbz_balance": "500000000000000000000",
+		"arb_stbz_balance": "166666666666666666667"
+	},
+	{
+		"user": "0xB2812370f17465AE096Ced55679428786734a678",
+		"eth_stbz_balance": "1172000000000000000000",
+		"arb_stbz_balance": "390666666666666666667"
+	},
+	{
+		"user": "0x3DA4E3BfAb65b982D1548c86688CEF7a73A82c73",
+		"eth_stbz_balance": "525682438106144834903",
+		"arb_stbz_balance": "175227479368714944968"
+	},
+	{
+		"user": "0x55aA656a58e9bEe60D1C79055273c417A25dFDbc",
+		"eth_stbz_balance": "7023084442555595720284",
+		"arb_stbz_balance": "2341028147518531906761"
+	},
+	{
+		"user": "0x335c64adB6bb273282F07CE0259C440b8e2B0430",
+		"eth_stbz_balance": "3463423238605092456143",
+		"arb_stbz_balance": "1154474412868364152048"
+	}
+]
