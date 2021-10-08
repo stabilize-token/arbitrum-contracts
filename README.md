@@ -7,3 +7,5 @@ STBZ Token: https://arbiscan.io/address/0x2C110867CA90e43D372C1C2E92990B00EA3281
 Buyback Bank: https://arbiscan.io/address/0xbedd44967d49a70680fd50bd8049273ab225d590
 
 Developers Treasury: https://arbiscan.io/address/0x914C8e4857a896b6530e06Ae1f38cf640fAc63D9
+
+Merkle Distributor: https://arbiscan.io/address/0x56d8d79d0342E56e0a87E6932d7833a992A3b91F
