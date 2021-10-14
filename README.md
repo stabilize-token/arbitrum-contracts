@@ -25,5 +25,9 @@ zs-WETH: https://arbiscan.io/address/0x75A2a05B8A21568f5e052b6bbCfB799624Fb2d8E
 
 zs-WETH Strategy V1: https://arbiscan.io/address/0x7222Aa5d8976e3b8CE3a24ccb3614A9e3c6058A4
 
+zs-fsGLP: https://arbiscan.io/address/0xA4373B079cf2689094C4cCE148aa04948666A361
+
+zs-fsGLP Strategy V1: https://arbiscan.io/address/0x08073f77eD81804c06E1496e4B2283919a3EFE89
+
 ## Read our Medium:
 Medium: https://stabilize.medium.com/
