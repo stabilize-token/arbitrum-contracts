@@ -31,6 +31,10 @@ zs-fsGLP: https://arbiscan.io/address/0xA4373B079cf2689094C4cCE148aa04948666A361
 
 zs-fsGLP Strategy V1: https://arbiscan.io/address/0x08073f77eD81804c06E1496e4B2283919a3EFE89
 
+zst-wBTC: https://arbiscan.io/address/0xa871660281D720DB65A1E31E4C2e820b6Fb47351
+
+zst-wBTC Strategy V1: https://arbiscan.io/address/0x360933587c3A871cc1d548BFC703e21F29309F4F
+
 ### Inactive Contracts
 zs-MIM Strategy V1: https://arbiscan.io/address/0x9d5DCd8B466f5aF217935aD1212F2eB7B3F70358
 
