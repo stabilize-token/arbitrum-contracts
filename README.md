@@ -35,6 +35,10 @@ zst-wBTC: https://arbiscan.io/address/0xa871660281D720DB65A1E31E4C2e820b6Fb47351
 
 zst-wBTC Strategy V2: https://arbiscan.io/address/0x83b0916aF62F556384f3e3C542FEE8992D3f3e40 
 
+zs-imUSDC: https://arbiscan.io/address/0x3B308089b9271a5B90Bf8C8B6959C2745C386CD5
+
+zs-imUSDC Strategy V1: https://arbiscan.io/address/0xa39ec7633A8B340ACb9bc522769A0811d75d6DD3
+
 ### Inactive Contracts
 zst-wBTC Strategy V1: https://arbiscan.io/address/0x360933587c3A871cc1d548BFC703e21F29309F4F
 
