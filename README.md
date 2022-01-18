@@ -23,10 +23,6 @@ zs-2CRV: https://arbiscan.io/address/0xC6fEe0D765dd0E14EF55f6eBE82A5780bbb3735f
 
 zs-2CRV Strategy V1: https://arbiscan.io/address/0x008FaF03038c810E478013d85659e25199a79E77
 
-zs-WETH: https://arbiscan.io/address/0x75A2a05B8A21568f5e052b6bbCfB799624Fb2d8E
-
-zs-WETH Strategy V1: https://arbiscan.io/address/0x7222Aa5d8976e3b8CE3a24ccb3614A9e3c6058A4
-
 zs-fsGLP: https://arbiscan.io/address/0xA4373B079cf2689094C4cCE148aa04948666A361
 
 zs-fsGLP Strategy V1: https://arbiscan.io/address/0x08073f77eD81804c06E1496e4B2283919a3EFE89
@@ -47,6 +43,10 @@ zs-imWETH Strategy V1: https://arbiscan.io/address/0x66364B02390ae98554cA35DC8C6
 zst-wBTC Strategy V1: https://arbiscan.io/address/0x360933587c3A871cc1d548BFC703e21F29309F4F
 
 zs-MIM Strategy V1: https://arbiscan.io/address/0x9d5DCd8B466f5aF217935aD1212F2eB7B3F70358
+
+zs-WETH: https://arbiscan.io/address/0x75A2a05B8A21568f5e052b6bbCfB799624Fb2d8E
+
+zs-WETH Strategy V1: https://arbiscan.io/address/0x7222Aa5d8976e3b8CE3a24ccb3614A9e3c6058A4
 
 ## Read our Medium:
 Medium: https://stabilize.medium.com/
