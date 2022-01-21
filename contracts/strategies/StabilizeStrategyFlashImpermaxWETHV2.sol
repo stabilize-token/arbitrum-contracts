@@ -1020,7 +1020,7 @@ contract StabilizeStrategyFlashImpermaxWETHV2 is Ownable, ReentrancyGuard {
         
         // No trading is performed on deposit
         if(nonContract == true){ }
-        depositIntoVaults(); // Needed in case multiple deposits in same block
+        depositIntoVaults(true); // Needed in case multiple deposits in same block
     }
     
     // Test function
@@ -1187,10 +1187,10 @@ contract StabilizeStrategyFlashImpermaxWETHV2 is Ownable, ReentrancyGuard {
         }
         lastVaultCurveAverageAPR = _aprAverage;
 
-        depositIntoVaults(); // This will auto deposit token into the highest returning vault
+        depositIntoVaults(true); // This will auto deposit token into the highest returning vault
     }
 
-    function depositIntoVaults() internal {
+    function depositIntoVaults(bool resetInterest) internal {
         // Strategy will deposit up to available liquidity amount (already in pool) in the highest APR pool
         // It will then deposit into all pools (up to the available liquidity amount) that have APRs above the average APR
         // Any remaining funds will go into the highest liquidity pool with the greatest APR
@@ -1232,7 +1232,9 @@ contract StabilizeStrategyFlashImpermaxWETHV2 is Ownable, ReentrancyGuard {
             router.mint(VaultList[lastBestVaultLiquidityAPRIndex].mintableToken, _bal, address(this), now.add(60));
         }
         
-        lastTokenBalance = totalLockedValue();
+        if(resetInterest == true){
+            lastTokenBalance = totalLockedValue();
+        }
     }
 
     function expectedProfit() external returns (
@@ -1336,8 +1338,8 @@ contract StabilizeStrategyFlashImpermaxWETHV2 is Ownable, ReentrancyGuard {
         uint256 buyAmount = totalFee.mul(DIVISION_FACTOR.sub(percentFlashDepositor)).div(DIVISION_FACTOR);
         doSTBZBuyback(WETH_ADDRESS, buyAmount); // Buy STBZ with the WETH
 
-        // 6. redeposit into the strategy
-        depositIntoVaults();
+        // 6. redeposit into the strategy, don't reset interest earned
+        depositIntoVaults(false);
         
         emit Flashloan(address(receiver), amount, totalFee);
         _flashActive = false;
@@ -1361,7 +1363,7 @@ contract StabilizeStrategyFlashImpermaxWETHV2 is Ownable, ReentrancyGuard {
             withdrawAmount = _balance;
         }
 
-        depositIntoVaults();
+        depositIntoVaults(true);
         
         return withdrawAmount;
     }
