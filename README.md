@@ -15,9 +15,6 @@ Merkle Distributor: https://arbiscan.io/address/0x56d8d79d0342E56e0a87E6932d7833
 Governance Calculator: https://arbiscan.io/address/0xFab8520dEB728e267F4b937037Bb83E22C480c98
 
 ### Strategy Contracts
-zs-MIM: https://arbiscan.io/address/0x1017E68aEcB51Fb46093f064Fa7c177757B7125E
-
-zs-MIM Strategy V2: https://arbiscan.io/address/0x0F1Ed99f9c4E020d35CEB07bE3a3bD9e4395a8EA
 
 zs-2CRV: https://arbiscan.io/address/0xC6fEe0D765dd0E14EF55f6eBE82A5780bbb3735f
 
@@ -40,6 +37,10 @@ zs-imWETH: https://arbiscan.io/address/0x8ebF70E10aDF6933b7cDD138FEfB0C3fD3Ae586
 zs-imWETH Strategy V2: https://arbiscan.io/address/0x7BDA4eD6754fb8Ee1Aa4414bCC8c3c9d51704B3C
 
 ### Inactive Contracts
+zs-MIM: https://arbiscan.io/address/0x1017E68aEcB51Fb46093f064Fa7c177757B7125E
+
+zs-MIM Strategy V2: https://arbiscan.io/address/0x0F1Ed99f9c4E020d35CEB07bE3a3bD9e4395a8EA
+
 zst-wBTC Strategy V2: https://arbiscan.io/address/0x83b0916aF62F556384f3e3C542FEE8992D3f3e40 
 
 zs-imWETH Strategy V1: https://arbiscan.io/address/0x66364B02390ae98554cA35DC8C6F8F27cbf06B66
