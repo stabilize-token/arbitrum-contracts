@@ -30,9 +30,11 @@ zs-imUSDC Strategy V1: https://arbiscan.io/address/0xa39ec7633A8B340ACb9bc522769
 
 zs-imWETH: https://arbiscan.io/address/0x8ebF70E10aDF6933b7cDD138FEfB0C3fD3Ae586A
 
-zs-imWETH Strategy V2: https://arbiscan.io/address/0x7BDA4eD6754fb8Ee1Aa4414bCC8c3c9d51704B3C
+zs-imWETH Strategy V3: https://arbiscan.io/address/0x7Cd4e91f691610534198AF409De1B5D128182242
 
 ### Inactive Contracts
+
+zs-imWETH Strategy V2: https://arbiscan.io/address/0x7BDA4eD6754fb8Ee1Aa4414bCC8c3c9d51704B3C
 
 zst-wBTC: https://arbiscan.io/address/0xa871660281D720DB65A1E31E4C2e820b6Fb47351
 
