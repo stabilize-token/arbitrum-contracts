@@ -18,7 +18,7 @@ Governance Calculator: https://arbiscan.io/address/0xFab8520dEB728e267F4b937037B
 
 zs-fsGLP: https://arbiscan.io/address/0xA4373B079cf2689094C4cCE148aa04948666A361
 
-zs-fsGLP Strategy V1: https://arbiscan.io/address/0x08073f77eD81804c06E1496e4B2283919a3EFE89
+zs-fsGLP Strategy V2: https://arbiscan.io/address/0xDB3849016b6812eD2fC0c8F1bfc2Fe034Be983e7
 
 zs-imUSDC: https://arbiscan.io/address/0x3B308089b9271a5B90Bf8C8B6959C2745C386CD5
 
@@ -29,6 +29,8 @@ zs-imWETH: https://arbiscan.io/address/0x8ebF70E10aDF6933b7cDD138FEfB0C3fD3Ae586
 zs-imWETH Strategy V3: https://arbiscan.io/address/0x7Cd4e91f691610534198AF409De1B5D128182242
 
 ### Inactive Contracts
+zs-fsGLP Strategy V1: https://arbiscan.io/address/0x08073f77eD81804c06E1496e4B2283919a3EFE89
+
 zs-2CRV: https://arbiscan.io/address/0xC6fEe0D765dd0E14EF55f6eBE82A5780bbb3735f
 
 zs-2CRV Strategy V1: https://arbiscan.io/address/0x008FaF03038c810E478013d85659e25199a79E77
