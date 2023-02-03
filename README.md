@@ -18,9 +18,11 @@ Governance Calculator: https://arbiscan.io/address/0xFab8520dEB728e267F4b937037B
 
 zs-fsGLP: https://arbiscan.io/address/0xA4373B079cf2689094C4cCE148aa04948666A361
 
-zs-fsGLP Strategy V2: https://arbiscan.io/address/0xDB3849016b6812eD2fC0c8F1bfc2Fe034Be983e7
+zs-fsGLP Strategy V3: https://arbiscan.io/address/0x0cb95613035913a4D957BD78328C71CE5E83f029
 
 ### Inactive Contracts
+zs-fsGLP Strategy V2: https://arbiscan.io/address/0xDB3849016b6812eD2fC0c8F1bfc2Fe034Be983e7
+
 zs-imUSDC: https://arbiscan.io/address/0x3B308089b9271a5B90Bf8C8B6959C2745C386CD5
 
 zs-imUSDC Strategy V1: https://arbiscan.io/address/0xa39ec7633A8B340ACb9bc522769A0811d75d6DD3
