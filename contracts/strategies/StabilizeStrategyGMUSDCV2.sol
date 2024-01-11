@@ -1188,6 +1188,15 @@ contract StabilizeStrategyGMUSDCV2 is Ownable {
         uint256 usdcNeeded;
         if(currentInterestDebt > StabilizeStrategyProperties(propAddress).usdMinInterest()){
             // Time to payout the interest, so add that to the usdc needed
+
+            // Remove the cushion factor
+            if(extraUsdc > currentCushion){
+                // Hold onto the cushion until explicitly used
+                extraUsdc = extraUsdc.sub(currentCushion);
+            }else{
+                extraUsdc = 0;
+            }
+
             usdcNeeded = currentInterestDebt.mul(10**tokenList[0].decimals).div(1e18);
             if(extraUsdc >= usdcNeeded){
                 // Do the buyback and reset the interest
@@ -1209,6 +1218,8 @@ contract StabilizeStrategyGMUSDCV2 is Ownable {
             if(extraUsdc > currentCushion){
                 // Hold onto the cushion until explicitly used
                 extraUsdc = extraUsdc.sub(currentCushion);
+            }else{
+                extraUsdc = 0;
             }
             if(extraUsdc > 0){
                 requestGMDeposit(extraUsdc);
