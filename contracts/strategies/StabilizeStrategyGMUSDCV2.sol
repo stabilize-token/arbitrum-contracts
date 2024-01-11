@@ -1102,18 +1102,20 @@ contract StabilizeStrategyGMUSDCV2 is Ownable {
         require(_balance > 0, "E7");
         uint256 withdrawAmountUsdc = 0;
         bool takeAll = false;
+        StabilizeStrategyProperties prop = StabilizeStrategyProperties(propAddress);
+        address zsTokenAddress = prop.zsTokenAddress();
         if(_share < _total){
             withdrawAmountUsdc = _balance.mul(_share).div(_total);
-            require(withdrawAmountUsdc > StabilizeStrategyProperties(propAddress).usdcMinMovement().mul(10 ** tokenList[0].decimals).mul(1e18).div(10 ** tokenList[0].decimals), "E8"); // Too little being withdrawn
+            require(withdrawAmountUsdc > prop.usdcMinMovement().mul(10 ** tokenList[0].decimals).mul(1e18).div(10 ** tokenList[0].decimals), "E8"); // Too little being withdrawn
         }else{
             // We are all shares, transfer all
             sweepEthToUsdc(); // Also include the tied up ETH
             withdrawAmountUsdc = _balance; // The _balance will be slightly less than the actual balance but doesn't matter
             takeAll = true;
         }
-        if(_depositor != StabilizeStrategyProperties(propAddress).zsTokenAddress()){
+        if(_depositor != zsTokenAddress){
             // Removing too much at once
-            require(withdrawAmountUsdc < StabilizeStrategyProperties(propAddress).usdMaxMovement().mul(MarketList.length), "E9");
+            require(withdrawAmountUsdc < prop.usdMaxMovement().mul(MarketList.length), "E9");
         }
         withdrawAmountUsdc = withdrawAmountUsdc.mul(10 ** tokenList[0].decimals).div(1e18);
         postWithdrawTakeAll = takeAll;
@@ -1122,7 +1124,8 @@ contract StabilizeStrategyGMUSDCV2 is Ownable {
             // We have enough USDC to send to the user right now
             bool ok = finalizeWithdraw(_depositor, withdrawAmountUsdc, takeAll);
             if(ok == true){
-                lastActionBalance = StabilizeStrategyProperties(propAddress).untaxBalance(address(this), true);
+                zsToken(zsTokenAddress).finalizeRedeem(_depositor); // This will burn the user's tokens
+                lastActionBalance = prop.untaxBalance(address(this), true);
                 return withdrawAmountUsdc;
             }
             revert("E10");
@@ -1518,7 +1521,6 @@ contract StabilizeStrategyGMUSDCV2 is Ownable {
     function afterDepositExecution(bytes32 key, ICallbackReceiver.DepositProps calldata _deposit, ICallbackReceiver.EventLogData calldata eventData) external {
         _deposit;
         checkAndUpdateAuthorizedCallback(key, GMXRouter(GMX_EXCHANGE_ROUTER).depositHandler());
-        sweepEthToUsdc();
         uint256 gmReceived = eventData.uintItems.items[0].value;
         if(gmReceived > 0){
             MarketList[authorizedCallbackHashMap[key].gmMarket].gmTokenAmount += gmReceived;
@@ -1535,7 +1537,6 @@ contract StabilizeStrategyGMUSDCV2 is Ownable {
         _deposit;
         eventData;
         checkAndUpdateAuthorizedCallback(key, GMXRouter(GMX_EXCHANGE_ROUTER).depositHandler());
-        sweepEthToUsdc();
         recognizedUSDCBalance = recognizedUSDCBalance.add(_deposit.numbers.initialShortTokenAmount);
         if(numberOfPendingCallbacks == 0){
             lastActionBalance = StabilizeStrategyProperties(propAddress).untaxBalance(address(this), false); // Using recent prices vs current
@@ -1547,8 +1548,6 @@ contract StabilizeStrategyGMUSDCV2 is Ownable {
         checkAndUpdateAuthorizedCallback(key, GMXRouter(GMX_EXCHANGE_ROUTER).withdrawalHandler());
         recognizedUSDCBalance += eventData.uintItems.items[0].value; // We converted long token to USDC
         recognizedUSDCBalance += eventData.uintItems.items[1].value; // Should be USDC from swaps
-        
-        sweepEthToUsdc();
 
         // Now the next actions depends on what we wanted to do previously
         if(postWithdrawalAction == 2){
@@ -1583,7 +1582,6 @@ contract StabilizeStrategyGMUSDCV2 is Ownable {
         _withdraw;
         eventData;
         checkAndUpdateAuthorizedCallback(key, GMXRouter(GMX_EXCHANGE_ROUTER).withdrawalHandler());
-        sweepEthToUsdc();
         MarketList[authorizedCallbackHashMap[key].gmMarket].gmTokenAmount = IERC20(MarketList[authorizedCallbackHashMap[key].gmMarket].marketAddress).balanceOf(address(this));
         // Something happened unexpectedly
         if(numberOfPendingCallbacks == 0){
@@ -1601,6 +1599,7 @@ contract StabilizeStrategyGMUSDCV2 is Ownable {
         require(numberOfPendingCallbacks > 0, "E19");
         authorizedCallbackHashMap[key].authorized = false;
         numberOfPendingCallbacks = numberOfPendingCallbacks.sub(1);
+        sweepEthToUsdc();
     }
 
     function sweepEthToUsdc() internal {
@@ -1726,33 +1725,30 @@ contract StabilizeStrategyGMUSDCV2 is Ownable {
         }
     }
 
-    function governanceForceMarketLiquidation(uint256 _marketIndex) external {
-        onlyGovernance();
-        compoundInterest();
-        uint256 worst = worstGMMarket;
-        worstGMMarket = _marketIndex;
-        totalWithdrawalUsdcCost = 0;
-        postWithdrawalAction = 1;
-        requestGMWithdraw(StabilizeStrategyProperties(propAddress).usdMaxMovement().mul(10 ** tokenList[0].decimals).div(1e18), false);
-        worstGMMarket = worst;
-    }
-
-    function governanceCushionAction(uint256 _action, uint256 _marketIndex) external {
+    function governanceMarketAction(uint256 _action, uint256 _marketIndex) external {
         onlyGovernance();
         compoundInterest();
         // 0 = action is withdrawal from best performing market a certain percentage (cushion percentage)
         // 1 - action is depositing cushion into indicated market (outside of interest payment)
-        if(_action == 0){
-            uint256 usdcEquivalent = lastActionBalance.mul(10 ** tokenList[0].decimals).div(1e18); // Convert to USDC units
-            if(usdcEquivalent > currentCushion){
-                usdcEquivalent = usdcEquivalent.sub(currentCushion);
-            }
-            usdcEquivalent = usdcEquivalent.mul(StabilizeStrategyProperties(propAddress).cushionPercent()).div(DIVISION_FACTOR);  
-            // We'll try to pull the equivalent of this as a cushion
+        // 2 - liquidate market from requested market
+        if(_action == 0 || _action == 2){
+            uint256 usdcEquivalent;
             uint256 worst = worstGMMarket;
-            worstGMMarket = bestGMMarket;
+            if(_action == 0){
+                usdcEquivalent = lastActionBalance.mul(10 ** tokenList[0].decimals).div(1e18); // Convert to USDC units
+                if(usdcEquivalent > currentCushion){
+                    usdcEquivalent = usdcEquivalent.sub(currentCushion);
+                }
+                usdcEquivalent = usdcEquivalent.mul(StabilizeStrategyProperties(propAddress).cushionPercent()).div(DIVISION_FACTOR);  
+                // We'll try to pull the equivalent of this as a cushion
+                postWithdrawalAction = 4;
+                worstGMMarket = bestGMMarket;
+            }else{
+                postWithdrawalAction = 1;
+                worstGMMarket = _marketIndex;
+                usdcEquivalent = StabilizeStrategyProperties(propAddress).usdMaxMovement().mul(10 ** tokenList[0].decimals).div(1e18);
+            }
             totalWithdrawalUsdcCost = 0;
-            postWithdrawalAction = 4;
             requestGMWithdraw(usdcEquivalent, false);
             worstGMMarket = worst;
         }else if(_action == 1 && currentCushion > 0){
