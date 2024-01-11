@@ -1759,8 +1759,9 @@ contract StabilizeStrategyGMUSDCV2 is Ownable {
             // Deposit only the cushion into pool
             uint256 best = bestGMMarket;
             bestGMMarket = _marketIndex;
-            payInterestThenNextStep(1, currentCushion, address(0), address(0));
+            uint256 depositCushion = currentCushion;
             currentCushion = 0; // Reset the cushion
+            payInterestThenNextStep(1, depositCushion, address(0), address(0));
             bestGMMarket = best;
         }
     }
