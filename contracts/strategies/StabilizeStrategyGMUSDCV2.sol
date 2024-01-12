@@ -1124,7 +1124,9 @@ contract StabilizeStrategyGMUSDCV2 is Ownable {
             // We have enough USDC to send to the user right now
             bool ok = finalizeWithdraw(_depositor, withdrawAmountUsdc, takeAll);
             if(ok == true){
-                zsToken(zsTokenAddress).finalizeRedeem(_depositor); // This will burn the user's tokens
+                if(_depositor == zsTokenAddress){
+                    zsToken(zsTokenAddress).finalizeRedeem(_depositor); // We are removing from the strategy back to the vault
+                }
                 lastActionBalance = prop.untaxBalance(address(this), true);
                 return withdrawAmountUsdc;
             }
