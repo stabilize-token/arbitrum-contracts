@@ -18,7 +18,7 @@ Governance Calculator: https://arbiscan.io/address/0xFab8520dEB728e267F4b937037B
 
 zs-fsGLP: https://arbiscan.io/address/0xA4373B079cf2689094C4cCE148aa04948666A361
 
-zs-fsGLP Strategy V4: https://arbiscan.io/address/0xDB3E503Ea196c3822b32d29907276ef2BB1e9050
+zs-fsGLP Strategy V4: https://arbiscan.io/address/0xcD28C22d3c270477b841D1E6868b334DEFa4F0C7
 
 zs-GMUSDC: https://arbiscan.io/address/0xf5b2CbDC0b9057A24B42fa76A38Ee5044a96ef92
 
