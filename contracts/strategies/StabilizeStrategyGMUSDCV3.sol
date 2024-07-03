@@ -593,6 +593,11 @@ interface GMXReader {
         uint256 min;
         uint256 max;
     }
+    enum SwapPricingType {
+        TwoStep,
+        Shift,
+        Atomic
+    }
     struct MarketPoolValueInfoProps {
         int256 poolValue;
         int256 longPnl;
@@ -628,7 +633,8 @@ interface GMXReader {
         GMXReader.MarketProps calldata market,
         GMXReader.MarketPrices calldata prices,
         uint256 marketTokenAmount,
-        address uiFeeReceiver
+        address uiFeeReceiver,
+        GMXReader.SwapPricingType _type
     ) external view returns (uint256, uint256);
     function getMarket(address dataStore, address gmAddress) external view returns (GMXReader.MarketProps memory);
 }
@@ -875,6 +881,8 @@ interface StabilizeStrategy {
     function MarketList(uint256) external view returns (StabilizeStrategy.MarketInfo memory);
     function marketListCount() external view returns (uint256);
 }
+
+// TODO: Add automated withdraw to cushion and deposit from cushion when GM tok en prices fluctuate above / below 7 day averages
 
 contract StabilizeStrategyGMUSDCV3 is Ownable {
     using SafeMath for uint256;
@@ -1141,19 +1149,23 @@ contract StabilizeStrategyGMUSDCV3 is Ownable {
             if(recognizedUSDCBalance > 0){
                 tokenList[0].token.safeTransfer(_receiver, recognizedUSDCBalance);
             }
-            emit WithdrawToUserFee(_receiver, recognizedUSDCBalance, 0, recognizedUSDCBalance);
+            //emit WithdrawToUserFee(_receiver, recognizedUSDCBalance, 0, recognizedUSDCBalance);
             recognizedUSDCBalance = 0;
             return true;
         }
+
+        // Introduce a new withdraw fee to account for underlying GMX fees
+        totalWithdrawalUsdcCost = totalWithdrawalUsdcCost.add(_usdcAmount.mul(StabilizeStrategyProperties(propAddress).withdrawFee()).div(DIVISION_FACTOR));
+
         if(recognizedUSDCBalance >= _usdcAmount){
             // Send this balance minus the withdraw fees
             if(_usdcAmount <= totalWithdrawalUsdcCost){
                 // User fees greater than withdrawn amount
-                emit WithdrawToUserFee(_receiver, _usdcAmount, totalWithdrawalUsdcCost, 0);
+                //emit WithdrawToUserFee(_receiver, _usdcAmount, totalWithdrawalUsdcCost, 0);
             }else{
                 recognizedUSDCBalance = recognizedUSDCBalance.sub(_usdcAmount.sub(totalWithdrawalUsdcCost));
                 tokenList[0].token.safeTransfer(_receiver, _usdcAmount.sub(totalWithdrawalUsdcCost));
-                emit WithdrawToUserFee(_receiver, _usdcAmount, totalWithdrawalUsdcCost, _usdcAmount.sub(totalWithdrawalUsdcCost));
+                //emit WithdrawToUserFee(_receiver, _usdcAmount, totalWithdrawalUsdcCost, _usdcAmount.sub(totalWithdrawalUsdcCost));
             }
         }else{
             // Check to see if the balance is close to what we should have
@@ -1163,9 +1175,9 @@ contract StabilizeStrategyGMUSDCV3 is Ownable {
             if(recognizedUSDCBalance > totalWithdrawalUsdcCost){
                 recognizedUSDCBalance = totalWithdrawalUsdcCost;
                 tokenList[0].token.safeTransfer(_receiver, recognizedUSDCBalance.sub(totalWithdrawalUsdcCost));
-                emit WithdrawToUserFee(_receiver, _usdcAmount, totalWithdrawalUsdcCost, recognizedUSDCBalance.sub(totalWithdrawalUsdcCost));
+                //emit WithdrawToUserFee(_receiver, _usdcAmount, totalWithdrawalUsdcCost, recognizedUSDCBalance.sub(totalWithdrawalUsdcCost));
             }else{
-                emit WithdrawToUserFee(_receiver, _usdcAmount, totalWithdrawalUsdcCost, 0);
+                //emit WithdrawToUserFee(_receiver, _usdcAmount, totalWithdrawalUsdcCost, 0);
             }
         }
         return true;
@@ -1314,7 +1326,8 @@ contract StabilizeStrategyGMUSDCV3 is Ownable {
             GMXRouter.CreateWithdrawalParams memory _withdraw;
             _withdraw.receiver = address(this);
             _withdraw.callbackContract = address(this);
-            _withdraw.uiFeeReceiver = address(0);
+            //_withdraw.uiFeeReceiver = address(0);
+            //_withdraw.shouldUnwrapNativeToken = false;
             _withdraw.market = MarketList[targetMarket].marketAddress;
 
             // Just convert all long tokens to USDC and hold it
@@ -1327,7 +1340,6 @@ contract StabilizeStrategyGMUSDCV3 is Ownable {
                 //_withdraw.longTokenSwapPath[1] = MarketList[0].marketAddress;
             //}
 
-            _withdraw.shouldUnwrapNativeToken = false;
             _withdraw.callbackGasLimit = StabilizeStrategyProperties(propAddress).callbackGasLimit();
 
             address withdrawalVault = WithdrawalHandler(GMXRouter(GMX_EXCHANGE_ROUTER).withdrawalHandler()).withdrawalVault(); // This is where we send the funds
@@ -1412,7 +1424,8 @@ contract StabilizeStrategyGMUSDCV3 is Ownable {
         GMXRouter.CreateDepositParams memory _deposit;
         _deposit.receiver = address(this);
         _deposit.callbackContract = address(this);
-        _deposit.uiFeeReceiver = address(0);
+        //_deposit.uiFeeReceiver = address(0);
+        //_deposit.shouldUnwrapNativeToken = false;
         _deposit.market = MarketList[bestGMMarket].marketAddress;
         _deposit.initialLongToken = WETH_ADDRESS;
         _deposit.initialShortToken = address(tokenList[0].token);
@@ -1422,7 +1435,7 @@ contract StabilizeStrategyGMUSDCV3 is Ownable {
             _deposit.longTokenSwapPath[0] = MarketList[0].marketAddress;
             _deposit.longTokenSwapPath[1] = MarketList[bestGMMarket].marketAddress;
         }
-        _deposit.shouldUnwrapNativeToken = false;
+        
         _deposit.callbackGasLimit = StabilizeStrategyProperties(propAddress).callbackGasLimit();
         {
             address datastoreAddress = GMXRouter(GMX_EXCHANGE_ROUTER).dataStore();
@@ -1957,6 +1970,7 @@ contract StabilizeStrategyProperties is Ownable, GasUtils, MarketUtils {
 
     // Strategy information
     uint256 public maxTradeSlippage = 1000; // 1000 / 100000 = 1%
+    uint256 public withdrawFee = 100; // 0.1% fee to account for GMX deposit and withdraw fees
     uint256 public usdcMinMovement = 10; // The minimum amount that a user can move around (deposit or withdraw, no decimals). Some of the USDC is used to pay the execution cost
     uint256 public usdcMinReserve = 30; // The smallest amount of USDC (no decimals) that will be stored for reserve, used for gas costs
     uint256 public usdMinInterest = 0; // Minimum amount of interest needed to send it to the reserves
@@ -1972,7 +1986,7 @@ contract StabilizeStrategyProperties is Ownable, GasUtils, MarketUtils {
     mapping(uint256 => uint256) public marketRewardsInfo;
 
     // Executor info
-    uint256 public gasPrice = 200000000; // 0.2 Gwei, governance can change
+    uint256 public gasPrice = 20000000; // 0.02 Gwei, governance can change
     uint256 public gasStipend = 3000000; // This is the gas units that are covered by executing a trade taken from the WETH profit
 
     address constant USDC_ADDRESS = address(0xaf88d065e77c8cC2239327C5EDb3A432268e5831);
@@ -2129,7 +2143,7 @@ contract StabilizeStrategyProperties is Ownable, GasUtils, MarketUtils {
 
         gmTokenAmount = gmTokenAmount.mul(DIVISION_FACTOR.sub(maxTradeSlippage)).div(DIVISION_FACTOR); // Add the slippage
 
-        return reader.getWithdrawalAmountOut(datastoreAddress, _marketProp, mPrices, gmTokenAmount, address(0));
+        return reader.getWithdrawalAmountOut(datastoreAddress, _marketProp, mPrices, gmTokenAmount, address(0), GMXReader.SwapPricingType.TwoStep);
     }
 
     // Uniswap Utils
@@ -2319,6 +2333,23 @@ contract StabilizeStrategyProperties is Ownable, GasUtils, MarketUtils {
     function finishActivateEmergencyWithdrawMode() external {
         onlyGovernance(); timelockConditionsMet(5);
         emergencyWithdrawMode = true;
+    }
+    // --------------------
+
+    // Change the strategy withdraw fee
+    // --------------------
+    
+    function startChangeWithdrawFee(uint256 _fee) external {
+        onlyGovernance();
+        require(_fee <= 100000,"Percent cannot be greater than 100%");
+        _timelockStart = block.timestamp;
+        _timelockType = 6;
+        _timelock_data[0] = _fee;
+    }
+    
+    function finishChangeWithdrawFee() external {
+        onlyGovernance(); timelockConditionsMet(6);
+        withdrawFee = _timelock_data[0];
     }
     // --------------------
 }
