@@ -702,6 +702,7 @@ interface ICallbackReceiver {
         uint256 initialShortTokenAmount;
         uint256 minMarketTokens;
         uint256 updatedAtBlock;
+        uint256 updatedAtTime;
         uint256 executionFee;
         uint256 callbackGasLimit;
     }
@@ -723,6 +724,7 @@ interface ICallbackReceiver {
         uint256 minLongTokenAmount;
         uint256 minShortTokenAmount;
         uint256 updatedAtBlock;
+        uint256 updatedAtTime;
         uint256 executionFee;
         uint256 callbackGasLimit;
     }
@@ -1365,12 +1367,12 @@ contract StabilizeStrategyGMUSDCV3 is Ownable {
 
             {
                 address datastoreAddress = GMXRouter(GMX_EXCHANGE_ROUTER).dataStore();
-                _withdraw.executionFee = GasUtils(propAddress).estimateExecuteWithdrawalGasLimit(datastoreAddress, _withdraw);
-                _withdraw.executionFee = GasUtils(propAddress).adjustGasLimitForEstimate(datastoreAddress, _withdraw.executionFee) + 200000; // Add 200k buffer
+                uint256 oracleCount;
+                (_withdraw.executionFee, oracleCount) = GasUtils(propAddress).estimateExecuteWithdrawalGasLimit(datastoreAddress, _withdraw);
+                _withdraw.executionFee = GasUtils(propAddress).adjustGasLimitForEstimate(datastoreAddress, _withdraw.executionFee, oracleCount) + 200000; // Add 200k buffer
                 if(tx.gasprice > 0){
                     _withdraw.executionFee = _withdraw.executionFee * tx.gasprice;
                 }
-                require(_withdraw.callbackGasLimit <= GasUtils(propAddress).getMaxCallbackGasLimit(datastoreAddress), "E12");
             }
 
             // Calculate first the execution cost
@@ -1439,12 +1441,12 @@ contract StabilizeStrategyGMUSDCV3 is Ownable {
         _deposit.callbackGasLimit = StabilizeStrategyProperties(propAddress).callbackGasLimit();
         {
             address datastoreAddress = GMXRouter(GMX_EXCHANGE_ROUTER).dataStore();
-            _deposit.executionFee = GasUtils(propAddress).estimateExecuteDepositGasLimit(datastoreAddress, _deposit, 1, 1);
-            _deposit.executionFee = GasUtils(propAddress).adjustGasLimitForEstimate(datastoreAddress, _deposit.executionFee) + 200000; // Add 200k buffer
+            uint256 oracleCount;
+            (_deposit.executionFee, oracleCount) = GasUtils(propAddress).estimateExecuteDepositGasLimit(datastoreAddress, _deposit, 1, 1);
+            _deposit.executionFee = GasUtils(propAddress).adjustGasLimitForEstimate(datastoreAddress, _deposit.executionFee, oracleCount) + 200000; // Add 200k buffer
             if(tx.gasprice > 0){
                 _deposit.executionFee = _deposit.executionFee * tx.gasprice;
             }
-            require(_deposit.callbackGasLimit <= GasUtils(propAddress).getMaxCallbackGasLimit(datastoreAddress), "E15");
         }
 
         // Calculate first the execution cost
@@ -1857,49 +1859,60 @@ contract StabilizeStrategyGMUSDCV3 is Ownable {
 
 // Inherited contracts
 contract GasUtils {
+    uint256 public callbackGasLimit = 2000000; // Gas limit used for callback
     uint256 public constant FLOAT_PRECISION = 10 ** 30;
-    bytes32 constant KEY_ESTIMATED_GAS_FEE_BASE_AMOUNT = keccak256(abi.encode("ESTIMATED_GAS_FEE_BASE_AMOUNT"));
+    bytes32 constant KEY_ESTIMATED_GAS_FEE_BASE_AMOUNT = keccak256(abi.encode("ESTIMATED_GAS_FEE_BASE_AMOUNT_V2_1"));
     bytes32 constant KEY_ESTIMATED_GAS_FEE_MULTIPLIER_FACTOR = keccak256(abi.encode("ESTIMATED_GAS_FEE_MULTIPLIER_FACTOR"));
     bytes32 constant KEY_SINGLE_SWAP_GAS_LIMIT = keccak256(abi.encode("SINGLE_SWAP_GAS_LIMIT"));
     bytes32 constant KEY_DEPOSIT_GAS_LIMIT_TRUE = keccak256(abi.encode(keccak256(abi.encode("DEPOSIT_GAS_LIMIT")), true));
     bytes32 constant KEY_DEPOSIT_GAS_LIMIT_FALSE = keccak256(abi.encode(keccak256(abi.encode("DEPOSIT_GAS_LIMIT")), false));
-    bytes32 constant KEY_WITHDRAWAL_GAS_LIMIT = keccak256(abi.encode(keccak256(abi.encode("WITHDRAWAL_GAS_LIMIT")))); // Double encoded for some reason
+    bytes32 constant KEY_WITHDRAWAL_GAS_LIMIT = keccak256(abi.encode("WITHDRAWAL_GAS_LIMIT"));
     bytes32 constant KEY_MAX_CALLBACK_GAS_LIMIT = keccak256(abi.encode("MAX_CALLBACK_GAS_LIMIT"));
+    bytes32 constant KEY_ESTIMATED_GAS_FEE_PER_ORACLE_PRICE = keccak256(abi.encode("ESTIMATED_GAS_FEE_PER_ORACLE_PRICE"));
 
-    function getMaxCallbackGasLimit(address datastoreAddress) external view returns (uint256) {
+    function getMaxCallbackGasLimit(address datastoreAddress) public view returns (uint256) {
         DataStore dataStore = DataStore(datastoreAddress);
         uint256 gasLimit = dataStore.getUint(KEY_MAX_CALLBACK_GAS_LIMIT);
         return gasLimit;
     }
 
-    function adjustGasLimitForEstimate(address datastoreAddress, uint256 estimatedGasLimit) external view returns (uint256) {
+    function estimateOraclePriceCount(uint256 swapsCount) internal pure returns (uint256) {
+        return 3 + swapsCount;
+    }
+
+    function adjustGasLimitForEstimate(address datastoreAddress, uint256 estimatedGasLimit, uint256 oracleCount) external view returns (uint256) {
         DataStore dataStore = DataStore(datastoreAddress);
         uint256 baseGasLimit = dataStore.getUint(KEY_ESTIMATED_GAS_FEE_BASE_AMOUNT);
+        baseGasLimit += dataStore.getUint(KEY_ESTIMATED_GAS_FEE_PER_ORACLE_PRICE) * oracleCount;
         uint256 multiplierFactor = dataStore.getUint(KEY_ESTIMATED_GAS_FEE_MULTIPLIER_FACTOR);
         uint256 gasLimit = baseGasLimit + estimatedGasLimit * multiplierFactor / FLOAT_PRECISION;
         return gasLimit;
     }
 
-    function estimateExecuteDepositGasLimit(address datastoreAddress, GMXRouter.CreateDepositParams calldata deposit, uint256 initialLong, uint256 initialShort) external view returns (uint256) {
+    function estimateExecuteDepositGasLimit(address datastoreAddress, GMXRouter.CreateDepositParams calldata deposit, uint256 initialLong, uint256 initialShort) external view returns (uint256, uint256) {
+        require(callbackGasLimit <= getMaxCallbackGasLimit(datastoreAddress), "Deposit callback limit too high");
         DataStore dataStore = DataStore(datastoreAddress);
         uint256 gasPerSwap = dataStore.getUint(KEY_SINGLE_SWAP_GAS_LIMIT);
         uint256 swapCount = deposit.longTokenSwapPath.length + deposit.shortTokenSwapPath.length;
+        uint256 oracleCount = estimateOraclePriceCount(swapCount);
         uint256 gasForSwaps = swapCount * gasPerSwap;
 
         if (initialLong == 0 || initialShort == 0) {
-            return dataStore.getUint(KEY_DEPOSIT_GAS_LIMIT_TRUE) + deposit.callbackGasLimit + gasForSwaps;
+            return (dataStore.getUint(KEY_DEPOSIT_GAS_LIMIT_TRUE) + deposit.callbackGasLimit + gasForSwaps, oracleCount);
         }
 
-        return dataStore.getUint(KEY_DEPOSIT_GAS_LIMIT_FALSE) + deposit.callbackGasLimit + gasForSwaps;
+        return (dataStore.getUint(KEY_DEPOSIT_GAS_LIMIT_FALSE) + deposit.callbackGasLimit + gasForSwaps, oracleCount);
     }
 
-    function estimateExecuteWithdrawalGasLimit(address datastoreAddress, GMXRouter.CreateWithdrawalParams calldata withdrawal) external view returns (uint256) {
+    function estimateExecuteWithdrawalGasLimit(address datastoreAddress, GMXRouter.CreateWithdrawalParams calldata withdrawal) external view returns (uint256, uint256) {
+        require(callbackGasLimit <= getMaxCallbackGasLimit(datastoreAddress), "Deposit callback limit too high");
         DataStore dataStore = DataStore(datastoreAddress);
         uint256 gasPerSwap = dataStore.getUint(KEY_SINGLE_SWAP_GAS_LIMIT);
         uint256 swapCount = withdrawal.longTokenSwapPath.length + withdrawal.shortTokenSwapPath.length;
+        uint256 oracleCount = estimateOraclePriceCount(swapCount);
         uint256 gasForSwaps = swapCount * gasPerSwap;
 
-        return dataStore.getUint(KEY_WITHDRAWAL_GAS_LIMIT) + withdrawal.callbackGasLimit + gasForSwaps;
+        return (dataStore.getUint(KEY_WITHDRAWAL_GAS_LIMIT) + withdrawal.callbackGasLimit + gasForSwaps, oracleCount);
     }
 }
 
@@ -1977,7 +1990,6 @@ contract StabilizeStrategyProperties is Ownable, GasUtils, MarketUtils {
     uint256 public usdMaxMovement = 50000e18; // The maximum amount (in USD with 18 decimals) that can be deposited or withdrawn from a GM market at a time
     uint256 public cushionPercent = 20000; // A mechanisim used to lock in gains from growth in token prices
     uint256 public maxTVL = 200000e18; // Strategy max value locked
-    uint256 public callbackGasLimit = 2000000; // Gas limit used for callback
     uint256 public minMarketCheckInterval = 14 days; // The time in between market checks that can be performed
 
     bool public interactGMMarkets = true; // Strategist can turn off GM market deposits
