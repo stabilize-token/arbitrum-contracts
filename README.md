@@ -22,9 +22,11 @@ zs-fsGLP Strategy V5: https://arbiscan.io/address/0xc888225703b46a4C9DBB0a99ECD0
 
 zs-GMUSDC: https://arbiscan.io/address/0xf5b2CbDC0b9057A24B42fa76A38Ee5044a96ef92
 
-zs-GMUSDC Strategy V2: https://arbiscan.io/address/0xadD40c951F5301988AF32B947256C8e7fb38A4bf
+zs-GMUSDC Strategy V3: https://arbiscan.io/address/0x7289e82fa5Ab14E5C38aDF83fc5cC497cEbd07a7
 
 ### Inactive Contracts
+zs-GMUSDC Strategy V2: https://arbiscan.io/address/0xadD40c951F5301988AF32B947256C8e7fb38A4bf
+
 zs-fsGLP Strategy V4: https://arbiscan.io/address/0xcD28C22d3c270477b841D1E6868b334DEFa4F0C7
 
 zs-fsGLP Strategy V3: https://arbiscan.io/address/0x0cb95613035913a4D957BD78328C71CE5E83f029
